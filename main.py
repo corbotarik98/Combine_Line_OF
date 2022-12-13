@@ -49,3 +49,5 @@ if __name__ == "__main__":
     print("================")
     print("================")
     combine_final.main(n_cores)
+
+    os.system("rm times samplines")
