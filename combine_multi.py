@@ -4,6 +4,13 @@ import threading
 import time
 
 
+def thread_function(timei, line, folder):
+    os.system("sed -i -e 's/^/"+timei+"    /' " + folder +
+              "/postProcessing/linesample/"+timei+'/'+line)
+    os.system('cat '+folder+'/postProcessing/linesample/' +
+              timei+'/'+line+' >> '+folder+'/combined/'+line)
+
+
 def main(folder):
     tim = time.time()
 
@@ -38,12 +45,6 @@ def main(folder):
     for line in samplines_:
         samplines.append(line.strip('\n'))
 
-    def thread_function(timei, line, folder):
-        os.system("sed -i -e 's/^/"+timei+"    /' " + folder +
-                  "/postProcessing/linesample/"+timei+'/'+line)
-        os.system('cat '+folder+'/postProcessing/linesample/' +
-                  timei+'/'+line+' >> '+folder+'/combined/'+line)
-
     threads = list()
 
     n = 0
@@ -62,5 +63,3 @@ def main(folder):
             thread.join()
 
     print(folder+" time: "+str(time.time()-tim))
-
-    return folder

@@ -41,6 +41,8 @@ if __name__ == "__main__":
     for p in processes:
         p.join()
 
+    os.system('rm samplines')
+
     print("")
     print("")
 
@@ -49,5 +51,3 @@ if __name__ == "__main__":
     print("================")
     print("================")
     combine_final.main(n_cores)
-
-    os.system("rm times samplines")
