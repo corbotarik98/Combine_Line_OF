@@ -29,7 +29,15 @@ def main(n_cores):
 
         for line in samplines:
 
-            os.system('cat '+core+'/combined/' +
-                      line+' >> combined/'+line)
+            f = open(core+'/combined/' + line, "r")
+            data = f.readlines()
+
+            f2 = open('combined/'+line, "a")
+
+            f2.writelines(data)
+
+            f2.close()
+
+            f.close()
 
         n += 1
