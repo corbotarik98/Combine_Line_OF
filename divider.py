@@ -32,6 +32,8 @@ def main(n_cores):
 
     times.sort(key=float)
     os.system("rm times")
+
+    f.close()
     chunked_list = list()
     chunk_size = len(times)//n_cores
 

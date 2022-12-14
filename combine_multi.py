@@ -5,10 +5,21 @@ import time
 
 
 def thread_function(timei, line, folder):
-    os.system("sed -i -e 's/^/"+timei+"    /' " + folder +
-              "/postProcessing/linesample/"+timei+'/'+line)
-    os.system('cat '+folder+'/postProcessing/linesample/' +
-              timei+'/'+line+' >> '+folder+'/combined/'+line)
+
+    f = open(folder+'/postProcessing/linesample/' + timei+'/'+line, "r")
+    data = f.readlines()
+
+    f2 = open(folder+'/combined/'+line, "a")
+
+    for i in range(len(data)):
+
+        data[i] = timei + "      " + data[i]
+
+    f2.writelines(data)
+
+    f2.close()
+
+    f.close()
 
 
 def main(folder):
@@ -37,6 +48,8 @@ def main(folder):
     os.system('ls '+folder+'/postProcessing/linesample/' +
               times[0]+' > samplines')
 
+    f.close()
+
     f = open("samplines", "r")
     samplines_ = f.readlines()
 
@@ -46,6 +59,8 @@ def main(folder):
         samplines.append(line.strip('\n'))
 
     threads = list()
+
+    f.close()
 
     n = 0
     for timei in times:

@@ -21,7 +21,7 @@ def main(n_cores):
     for line in samplines_:
         samplines.append(line.strip('\n'))
     os.system("rm samplelines")
-
+    f.close()
     n = 0
     for core in cores:
 
@@ -32,4 +32,4 @@ def main(n_cores):
             os.system('cat '+core+'/combined/' +
                       line+' >> combined/'+line)
 
-        n+=1
+        n += 1
