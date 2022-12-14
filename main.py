@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     cores = division[0]
 
-    queue = Queue()
+    queue = Queue(n_cores)
 
     print("")
     print("")
